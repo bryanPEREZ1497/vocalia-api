@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost/vocal', {
   .then(db => console.log('db connected'))
   .catch(err => console.log(err));
 
+
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
@@ -18,10 +19,9 @@ app.use(cors());
 
 app.set('port', process.env.PORT || 3000);
 
-
 app.listen(app.get('port'), () => {
   console.log(`Server running on port ${app.get('port')}`);
-})
+});
 
-// app.use(require('./routes/index'));
 app.use(require('./routes/partido.routes'));
+app.use(require('./routes/index'));
